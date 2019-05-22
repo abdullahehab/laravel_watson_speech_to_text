@@ -13,6 +13,6 @@
 
 $router->post('/convert-file', 'ExampleController@convertFileAction');
 
-$router->get('/convert-file', function () {
+$router->get('/', function () {
     return app()->version();
 });
