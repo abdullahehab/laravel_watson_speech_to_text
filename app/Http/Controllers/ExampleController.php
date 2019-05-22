@@ -19,7 +19,7 @@ class ExampleController extends Controller
 
         $text = $this->convertSoundToTextAction($target_path.$fileOutputName);
 
-        //unlink($target_path.$fileOutputName);
+        unlink($target_path.$fileOutputName);
 
         return response()->json(json_decode($text));
     }
