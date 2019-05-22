@@ -11,4 +11,8 @@
 |
 */
 
-$router->post('/', 'ExampleController@convertFileAction');
+$router->post('/convert-file', 'ExampleController@convertFileAction');
+
+$router->get('/convert-file', function () {
+    return app()->version();
+});
