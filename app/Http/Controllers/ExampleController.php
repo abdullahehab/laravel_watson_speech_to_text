@@ -21,7 +21,7 @@ class ExampleController extends Controller
 
         unlink($target_path.$fileOutputName);
 
-        return response()->json(json_decode($text));
+        return response()->json(json_decode($text, true));
     }
 
     public function convertSoundToTextAction($file)
