@@ -21,9 +21,28 @@ class ExampleController extends Controller
 
         unlink($target_path.$fileOutputName);
 
-        return response()->json(json_decode($text, true));
+        $response = json_decode($text, true);
+        $results = $response['results'];
+        $results = $this->search($results, 'transcript');
+        return response()->json($results);
     }
 
+    public function search($array, $key)
+    {
+        $results = array();
+
+        if (is_array($array)) {
+            if (isset($array[$key])) {
+                $results[] = $array[$key];
+            }
+
+            foreach ($array as $subarray) {
+                $results = array_merge($results, $this->search($subarray, $key));
+            }
+        }
+
+        return $results;
+    }
     public function convertSoundToTextAction($file)
     {
         $curl = curl_init();
