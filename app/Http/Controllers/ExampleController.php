@@ -24,7 +24,7 @@ class ExampleController extends Controller
         $response = json_decode($text, true);
         $results = $response['results'];
         $results = $this->search($results, 'transcript');
-        return response()->json($results);
+        return response()->json(['results'  =>  $results]);
     }
 
     public function search($array, $key)
@@ -33,7 +33,7 @@ class ExampleController extends Controller
 
         if (is_array($array)) {
             if (isset($array[$key])) {
-                $results[] = $array[$key];
+                $results[] = (string)$array[$key];
             }
 
             foreach ($array as $subarray) {
